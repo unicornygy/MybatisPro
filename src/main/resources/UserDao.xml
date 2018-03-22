@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unicorn.dao.UserDao">
+    <!-- 注意这里的 namespace必须对应着map接口的全类名-->
+    <select id="findUserById" parameterType="int" resultType="user">
+        select * from user where id = #{id}
+    </select>
+
+    <select id="findUserByName" parameterType="java.lang.String" resultType="user">
+        select * from user where name like '%${value}%'
+    </select>
+
+    <insert id="insertUser" parameterType="user">
+        insert into user (id,name,birth,sex)
+        values(#{id},#{name},#{birth},#{sex})
+    </insert>
+
+    <delete id="deleteUserById" parameterType="int">
+        delete from user where id=#{id}
+    </delete>
+
+    <update id="updateUser" parameterType="user">
+        update user set
+        name=#{name},birth=#{birth},sex=#{sex}
+        where id=#{id}
+    </update>
+
+</mapper>
